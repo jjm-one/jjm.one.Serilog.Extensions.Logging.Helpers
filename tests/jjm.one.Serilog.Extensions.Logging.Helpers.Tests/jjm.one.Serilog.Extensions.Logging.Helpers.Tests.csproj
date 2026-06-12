@@ -9,6 +9,7 @@
     <RootNamespace>$(_ProjectName).Tests</RootNamespace>
     <Description>A collection of helper functions for the Serilog logging tool.(Unit-Tests)</Description>
     <SignAssembly>false</SignAssembly>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
