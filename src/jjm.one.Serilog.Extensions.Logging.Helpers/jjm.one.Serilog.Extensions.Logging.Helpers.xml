@@ -10,14 +10,17 @@
       </summary>
     </member>
     <member
-      name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogFctCall(Serilog.ILogger,Serilog.Events.LogEventLevel)">
+      name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogFctCall(Serilog.ILogger,Serilog.Events.LogEventLevel,System.String,System.String)">
       <summary>
-        Log a function/method call.
+        Log a function/method call. The class and method names are resolved at compile time via
+        caller-info attributes — zero allocation, no stack walk.
       </summary>
       <param name="logger">The logger instance.</param>
       <param name="level">The logging level. Default is<see
         cref="F:Serilog.Events.LogEventLevel.Debug"/>.
       </param>
+      <param name="memberName">Compiler-supplied calling member name.</param>
+      <param name="sourceFilePath">Compiler-supplied calling source file path.</param>
     </member>
     <member
       name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogFctCall(Serilog.ILogger,System.Type,System.Reflection.MethodBase,Serilog.Events.LogEventLevel)">
@@ -38,16 +41,19 @@
       </param>
     </member>
     <member
-      name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogExcInFctCall(Serilog.ILogger,System.Exception,System.String,Serilog.Events.LogEventLevel)">
+      name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogExcInFctCall(Serilog.ILogger,System.Exception,System.String,Serilog.Events.LogEventLevel,System.String,System.String)">
       <summary>
-        Log an exception within a function/method call.
+        Log an exception within a function/method call. The class and method names are resolved at
+        compile time via caller-info attributes — zero allocation, no stack walk.
       </summary>
       <param name="logger">The logger instance.</param>
       <param name="exc">The exception.</param>
-      <param name="msg">The message of the exception.</param>
+      <param name="msg">An optional context message appended to the log entry.</param>
       <param name="level">The logging level. Default is<see
         cref="F:Serilog.Events.LogEventLevel.Error"/>.
       </param>
+      <param name="memberName">Compiler-supplied calling member name.</param>
+      <param name="sourceFilePath">Compiler-supplied calling source file path.</param>
     </member>
     <member
       name="M:jjm.one.Serilog.Extensions.Logging.Helpers.FunctionLogging.LogExcInFctCall(Serilog.ILogger,System.Exception,System.Type,System.Reflection.MethodBase,System.String,Serilog.Events.LogEventLevel)">
@@ -64,7 +70,7 @@
         <see cref="T:System.Reflection.MethodBase"/>
         of the calling function/method.
       </param>
-      <param name="msg">The message of the exception.</param>
+      <param name="msg">An optional context message appended to the log entry.</param>
       <param name="level">The logging level. Default is<see
         cref="F:Serilog.Events.LogEventLevel.Error"/>.
       </param>
