@@ -1,14 +1,48 @@
 <?xml version="1.0"?>
 <doc>
-  <assembly>
-    <name>jjm.one.Serilog.Extensions.Logging.Helpers.Tests</name>
-  </assembly>
-  <members>
-    <member
-      name="T:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests">
-      <summary>
-        Tests for<see cref="N:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging"/>.
-      </summary>
-    </member>
-  </members>
+    <assembly>
+        <name>jjm.one.Serilog.Extensions.Logging.Helpers.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests">
+            <summary>
+                This class contains the tests for the <see cref="N:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging" /> class.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.#ctor">
+            <summary>
+                The default constructor of the <see cref="T:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests" /> class.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogFctCallTest1">
+            <summary>
+                1. test of the LogFctCall function.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogFctCallTest2">
+            <summary>
+                2. test of the LogFctCall function.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogExcInFctCallTest1">
+            <summary>
+                1. test of the LogExcInFctCall function.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogExcInFctCallTest2">
+            <summary>
+                2. test of the LogExcInFctCall function.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogExcInFctCallTest3">
+            <summary>
+                3. test of the LogExcInFctCall function.
+            </summary>
+        </member>
+        <member name="M:jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging.FunctionLoggingTests.LogExcInFctCallTest4">
+            <summary>
+                4. test of the LogExcInFctCall function.
+            </summary>
+        </member>
+    </members>
 </doc>
