@@ -86,15 +86,15 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a778e555ec73815f2291aa8eb956af8dc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a778e555ec73815f2291aa8eb956af8dc">LogFctCall</a> (this ILogger logger, LogEventLevel level=LogEventLevel.Debug)</td></tr>
-<tr class="memdesc:a778e555ec73815f2291aa8eb956af8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a function/method call.  <br /></td></tr>
-<tr class="separator:a778e555ec73815f2291aa8eb956af8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a966fa8ca1f36a4dfad556d6a13a2007a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a966fa8ca1f36a4dfad556d6a13a2007a">LogFctCall</a> (this ILogger logger, LogEventLevel level=LogEventLevel.Debug, [CallerMemberName] string memberName=&quot;&quot;, [CallerFilePath] string sourceFilePath=&quot;&quot;)</td></tr>
+<tr class="memdesc:a966fa8ca1f36a4dfad556d6a13a2007a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a function/method call. The class and method names are resolved at compile time via caller-info attributes — zero allocation, no stack walk.  <br /></td></tr>
+<tr class="separator:a966fa8ca1f36a4dfad556d6a13a2007a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41d9bb2e844e7593ec272f95b852b0a0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a41d9bb2e844e7593ec272f95b852b0a0">LogFctCall</a> (this ILogger logger, Type? classType, MethodBase? methodType, LogEventLevel level=LogEventLevel.Debug)</td></tr>
 <tr class="memdesc:a41d9bb2e844e7593ec272f95b852b0a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a function/method call.  <br /></td></tr>
 <tr class="separator:a41d9bb2e844e7593ec272f95b852b0a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b8e8f21c7573b808012e2a1af36778c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a1b8e8f21c7573b808012e2a1af36778c">LogExcInFctCall</a> (this ILogger logger, Exception exc, string? msg=null, LogEventLevel level=LogEventLevel.Error)</td></tr>
-<tr class="memdesc:a1b8e8f21c7573b808012e2a1af36778c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an exception within a function/method call.  <br /></td></tr>
-<tr class="separator:a1b8e8f21c7573b808012e2a1af36778c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37f2f92716f9f039c4eed7aba4ce0560"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a37f2f92716f9f039c4eed7aba4ce0560">LogExcInFctCall</a> (this ILogger logger, Exception exc, string? msg=null, LogEventLevel level=LogEventLevel.Error, [CallerMemberName] string memberName=&quot;&quot;, [CallerFilePath] string sourceFilePath=&quot;&quot;)</td></tr>
+<tr class="memdesc:a37f2f92716f9f039c4eed7aba4ce0560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an exception within a function/method call. The class and method names are resolved at compile time via caller-info attributes — zero allocation, no stack walk.  <br /></td></tr>
+<tr class="separator:a37f2f92716f9f039c4eed7aba4ce0560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d5a6db1045c5a2d30fd2afb398ac9a2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjjm_1_1one_1_1Serilog_1_1Extensions_1_1Logging_1_1Helpers_1_1FunctionLogging.html#a1d5a6db1045c5a2d30fd2afb398ac9a2">LogExcInFctCall</a> (this ILogger logger, Exception exc, Type? classType, MethodBase? methodType, string? msg=null, LogEventLevel level=LogEventLevel.Error)</td></tr>
 <tr class="memdesc:a1d5a6db1045c5a2d30fd2afb398ac9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an exception within a function/method call.  <br /></td></tr>
 <tr class="separator:a1d5a6db1045c5a2d30fd2afb398ac9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,8 +102,8 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Static class for all function logging helper extensions. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1b8e8f21c7573b808012e2a1af36778c" name="a1b8e8f21c7573b808012e2a1af36778c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b8e8f21c7573b808012e2a1af36778c">&#9670;&#160;</a></span>LogExcInFctCall() <span class="overload">[1/2]</span></h2>
+<a id="a37f2f92716f9f039c4eed7aba4ce0560" name="a37f2f92716f9f039c4eed7aba4ce0560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f2f92716f9f039c4eed7aba4ce0560">&#9670;&#160;</a></span>LogExcInFctCall() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +133,19 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">LogEventLevel&#160;</td>
-          <td class="paramname"><em>level</em> = <code>LogEventLevel::Error</code>&#160;</td>
+          <td class="paramname"><em>level</em> = <code>LogEventLevel::Error</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerMemberName] string&#160;</td>
+          <td class="paramname"><em>memberName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerFilePath] string&#160;</td>
+          <td class="paramname"><em>sourceFilePath</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -148,13 +160,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Log an exception within a function/method call. </p>
+<p>Log an exception within a function/method call. The class and method names are resolved at compile time via caller-info attributes — zero allocation, no stack walk. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger instance.</td></tr>
     <tr><td class="paramname">exc</td><td>The exception.</td></tr>
-    <tr><td class="paramname">msg</td><td>The message of the exception.</td></tr>
+    <tr><td class="paramname">msg</td><td>An optional context message appended to the log entry.</td></tr>
     <tr><td class="paramname">level</td><td>The logging level. Default is LogEventLevel.Error.</td></tr>
+    <tr><td class="paramname">memberName</td><td>Compiler-supplied calling member name.</td></tr>
+    <tr><td class="paramname">sourceFilePath</td><td>Compiler-supplied calling source file path.</td></tr>
   </table>
   </dd>
 </dl>
@@ -226,7 +240,7 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">exc</td><td>The exception.</td></tr>
     <tr><td class="paramname">classType</td><td>The Type of the calling class.</td></tr>
     <tr><td class="paramname">methodType</td><td>The MethodBase of the calling function/method.</td></tr>
-    <tr><td class="paramname">msg</td><td>The message of the exception.</td></tr>
+    <tr><td class="paramname">msg</td><td>An optional context message appended to the log entry.</td></tr>
     <tr><td class="paramname">level</td><td>The logging level. Default is LogEventLevel.Error.</td></tr>
   </table>
   </dd>
@@ -234,8 +248,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a778e555ec73815f2291aa8eb956af8dc" name="a778e555ec73815f2291aa8eb956af8dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a778e555ec73815f2291aa8eb956af8dc">&#9670;&#160;</a></span>LogFctCall() <span class="overload">[1/2]</span></h2>
+<a id="a966fa8ca1f36a4dfad556d6a13a2007a" name="a966fa8ca1f36a4dfad556d6a13a2007a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966fa8ca1f36a4dfad556d6a13a2007a">&#9670;&#160;</a></span>LogFctCall() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +267,19 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">LogEventLevel&#160;</td>
-          <td class="paramname"><em>level</em> = <code>LogEventLevel::Debug</code>&#160;</td>
+          <td class="paramname"><em>level</em> = <code>LogEventLevel::Debug</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerMemberName] string&#160;</td>
+          <td class="paramname"><em>memberName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[CallerFilePath] string&#160;</td>
+          <td class="paramname"><em>sourceFilePath</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -268,11 +294,13 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Log a function/method call. </p>
+<p>Log a function/method call. The class and method names are resolved at compile time via caller-info attributes — zero allocation, no stack walk. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">logger</td><td>The logger instance.</td></tr>
     <tr><td class="paramname">level</td><td>The logging level. Default is LogEventLevel.Debug.</td></tr>
+    <tr><td class="paramname">memberName</td><td>Compiler-supplied calling member name.</td></tr>
+    <tr><td class="paramname">sourceFilePath</td><td>Compiler-supplied calling source file path.</td></tr>
   </table>
   </dd>
 </dl>
