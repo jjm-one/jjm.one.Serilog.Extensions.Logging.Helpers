@@ -1,29 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>$(DefaultNetCoreTargetFramework);$(AuxNetCoreTargetFramework)</TargetFrameworks>
-        <PackageId>$(_ProjectName)</PackageId>
-        <Title>$(_ProjectName)</Title>
-        <AssemblyName>$(_ProjectName)</AssemblyName>
-        <RootNamespace>$(_ProjectName)</RootNamespace>
-        <Description>A collection of helper functions for the Serilog logging tool.</Description>
-        <PackageTags>extension, csharp, logging, serilog, serilog-extension</PackageTags>
-        <SignAssembly>True</SignAssembly>
-        <AssemblyOriginatorKeyFile>..\..\jjm.one.Serilog.Extensions.Logging.Helpers.SignKey.snk</AssemblyOriginatorKeyFile>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>$(DefaultNetCoreTargetFramework);$(AuxNetCoreTargetFramework)</TargetFrameworks>
+    <PackageId>$(_ProjectName)</PackageId>
+    <Title>$(_ProjectName)</Title>
+    <AssemblyName>$(_ProjectName)</AssemblyName>
+    <RootNamespace>$(_ProjectName)</RootNamespace>
+    <Description>A collection of helper functions for the Serilog logging tool.</Description>
+    <PackageTags>extension, csharp, logging, serilog, serilog-extension</PackageTags>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\jjm.one.Serilog.Extensions.Logging.Helpers.SignKey.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <LangVersion>latestmajor</LangVersion>
-        <DocumentationFile>.\jjm.one.Serilog.Extensions.Logging.Helpers.xml</DocumentationFile>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <LangVersion>latestmajor</LangVersion>
-        <DocumentationFile>.\jjm.one.Serilog.Extensions.Logging.Helpers.xml</DocumentationFile>
-    </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latestmajor</LangVersion>
+    <DocumentationFile>.\jjm.one.Serilog.Extensions.Logging.Helpers.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latestmajor</LangVersion>
+    <DocumentationFile>.\jjm.one.Serilog.Extensions.Logging.Helpers.xml</DocumentationFile>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Serilog.Extensions.Logging" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.Extensions.Logging"/>
+  </ItemGroup>
 
 </Project>
