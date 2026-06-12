@@ -6,7 +6,7 @@ using Serilog.Events;
 namespace jjm.one.Serilog.Extensions.Logging.Helpers.Tests.FunctionLogging;
 
 /// <summary>
-///     This class contains the tests for the <see cref="FunctionLogging" /> class.
+///     Tests for the <see cref="FunctionLogging" /> class.
 /// </summary>
 public class FunctionLoggingTests
 {
@@ -25,22 +25,16 @@ public class FunctionLoggingTests
 
     #endregion
 
-    #region tests
+    #region LogFctCall tests
 
     /// <summary>
-    ///     1. test of the LogFctCall function.
+    ///     LogFctCall (auto-detect) logs at the default Debug level.
     /// </summary>
     [Fact]
     public void LogFctCallTest1()
     {
-        // arrange
-        _logger.Setup(x => x.Write(LogEventLevel.Debug,
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
-
-        // act 
         _logger.Object.LogFctCall();
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Debug,
                 "Function called: {ClassName} -> {FctName}",
                 nameof(FunctionLoggingTests), nameof(LogFctCallTest1)),
@@ -48,19 +42,13 @@ public class FunctionLoggingTests
     }
 
     /// <summary>
-    ///     2. test of the LogFctCall function.
+    ///     LogFctCall (explicit types) logs at the default Debug level.
     /// </summary>
     [Fact]
     public void LogFctCallTest2()
     {
-        // arrange
-        _logger.Setup(x => x.Write(LogEventLevel.Debug,
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
-
-        // act 
         _logger.Object.LogFctCall(GetType(), MethodBase.GetCurrentMethod());
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Debug,
                 "Function called: {ClassName} -> {FctName}",
                 nameof(FunctionLoggingTests), nameof(LogFctCallTest2)),
@@ -68,20 +56,71 @@ public class FunctionLoggingTests
     }
 
     /// <summary>
-    ///     1. test of the LogExcInFctCall function.
+    ///     LogFctCall (auto-detect) respects a custom log level.
+    /// </summary>
+    [Theory]
+    [InlineData(LogEventLevel.Verbose)]
+    [InlineData(LogEventLevel.Information)]
+    [InlineData(LogEventLevel.Warning)]
+    [InlineData(LogEventLevel.Error)]
+    [InlineData(LogEventLevel.Fatal)]
+    public void LogFctCall_CustomLevel_AutoDetect(LogEventLevel level)
+    {
+        _logger.Object.LogFctCall(level);
+
+        _logger.Verify(x => x.Write(level,
+                "Function called: {ClassName} -> {FctName}",
+                nameof(FunctionLoggingTests), nameof(LogFctCall_CustomLevel_AutoDetect)),
+            Times.Once);
+    }
+
+    /// <summary>
+    ///     LogFctCall (explicit types) respects a custom log level.
+    /// </summary>
+    [Theory]
+    [InlineData(LogEventLevel.Verbose)]
+    [InlineData(LogEventLevel.Information)]
+    [InlineData(LogEventLevel.Warning)]
+    [InlineData(LogEventLevel.Error)]
+    [InlineData(LogEventLevel.Fatal)]
+    public void LogFctCall_CustomLevel_Explicit(LogEventLevel level)
+    {
+        _logger.Object.LogFctCall(GetType(), MethodBase.GetCurrentMethod(), level);
+
+        _logger.Verify(x => x.Write(level,
+                "Function called: {ClassName} -> {FctName}",
+                nameof(FunctionLoggingTests), nameof(LogFctCall_CustomLevel_Explicit)),
+            Times.Once);
+    }
+
+    /// <summary>
+    ///     LogFctCall (explicit types) logs null class/method names as null.
+    /// </summary>
+    [Fact]
+    public void LogFctCall_NullClassAndMethod_LogsNulls()
+    {
+        _logger.Object.LogFctCall(null, null);
+
+        _logger.Verify(x => x.Write(LogEventLevel.Debug,
+                "Function called: {ClassName} -> {FctName}",
+                (string?)null, (string?)null),
+            Times.Once);
+    }
+
+    #endregion
+
+    #region LogExcInFctCall tests
+
+    /// <summary>
+    ///     LogExcInFctCall (auto-detect) with no custom message uses an empty string.
     /// </summary>
     [Fact]
     public void LogExcInFctCallTest1()
     {
-        // arrange
         var exc = new Exception("Test");
-        _logger.Setup(x => x.Write(LogEventLevel.Debug, It.IsAny<Exception>(),
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
 
-        // act 
         _logger.Object.LogExcInFctCall(exc);
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Error,
                 It.Is<Exception>(e => e == exc),
                 "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
@@ -91,20 +130,15 @@ public class FunctionLoggingTests
     }
 
     /// <summary>
-    ///     2. test of the LogExcInFctCall function.
+    ///     LogExcInFctCall (auto-detect) with a custom message prepends a newline.
     /// </summary>
     [Fact]
     public void LogExcInFctCallTest2()
     {
-        // arrange
         var exc = new Exception("Test");
-        _logger.Setup(x => x.Write(LogEventLevel.Debug, It.IsAny<Exception>(),
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
 
-        // act 
         _logger.Object.LogExcInFctCall(exc, "TestMSG");
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Error,
                 It.Is<Exception>(e => e == exc),
                 "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
@@ -114,21 +148,15 @@ public class FunctionLoggingTests
     }
 
     /// <summary>
-    ///     3. test of the LogExcInFctCall function.
+    ///     LogExcInFctCall (explicit types) with no custom message uses an empty string.
     /// </summary>
     [Fact]
     public void LogExcInFctCallTest3()
     {
-        // arrange
         var exc = new Exception("Test");
-        _logger.Setup(x => x.Write(LogEventLevel.Debug, It.IsAny<Exception>(),
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
 
-        // act 
-        _logger.Object.LogExcInFctCall(exc, GetType(),
-            MethodBase.GetCurrentMethod());
+        _logger.Object.LogExcInFctCall(exc, GetType(), MethodBase.GetCurrentMethod());
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Error,
                 It.Is<Exception>(e => e == exc),
                 "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
@@ -138,26 +166,83 @@ public class FunctionLoggingTests
     }
 
     /// <summary>
-    ///     4. test of the LogExcInFctCall function.
+    ///     LogExcInFctCall (explicit types) with a custom message prepends a newline.
     /// </summary>
     [Fact]
     public void LogExcInFctCallTest4()
     {
-        // arrange
         var exc = new Exception("Test");
-        _logger.Setup(x => x.Write(LogEventLevel.Debug, It.IsAny<Exception>(),
-            It.IsAny<string>(), It.IsAny<object?[]?>())).Verifiable();
 
-        // act 
-        _logger.Object.LogExcInFctCall(exc, GetType(),
-            MethodBase.GetCurrentMethod(), "TestMSG");
+        _logger.Object.LogExcInFctCall(exc, GetType(), MethodBase.GetCurrentMethod(), "TestMSG");
 
-        // assert
         _logger.Verify(x => x.Write(LogEventLevel.Error,
                 It.Is<Exception>(e => e == exc),
                 "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
                 nameof(FunctionLoggingTests), nameof(LogExcInFctCallTest4),
                 "\nTestMSG"),
+            Times.Once);
+    }
+
+    /// <summary>
+    ///     LogExcInFctCall (auto-detect) respects a custom log level.
+    /// </summary>
+    [Theory]
+    [InlineData(LogEventLevel.Verbose)]
+    [InlineData(LogEventLevel.Debug)]
+    [InlineData(LogEventLevel.Information)]
+    [InlineData(LogEventLevel.Warning)]
+    [InlineData(LogEventLevel.Fatal)]
+    public void LogExcInFctCall_CustomLevel_AutoDetect(LogEventLevel level)
+    {
+        var exc = new Exception("Test");
+
+        _logger.Object.LogExcInFctCall(exc, level: level);
+
+        _logger.Verify(x => x.Write(level,
+                It.Is<Exception>(e => e == exc),
+                "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
+                nameof(FunctionLoggingTests), nameof(LogExcInFctCall_CustomLevel_AutoDetect),
+                string.Empty),
+            Times.Once);
+    }
+
+    /// <summary>
+    ///     LogExcInFctCall (explicit types) respects a custom log level.
+    /// </summary>
+    [Theory]
+    [InlineData(LogEventLevel.Verbose)]
+    [InlineData(LogEventLevel.Debug)]
+    [InlineData(LogEventLevel.Information)]
+    [InlineData(LogEventLevel.Warning)]
+    [InlineData(LogEventLevel.Fatal)]
+    public void LogExcInFctCall_CustomLevel_Explicit(LogEventLevel level)
+    {
+        var exc = new Exception("Test");
+
+        _logger.Object.LogExcInFctCall(exc, GetType(), MethodBase.GetCurrentMethod(), level: level);
+
+        _logger.Verify(x => x.Write(level,
+                It.Is<Exception>(e => e == exc),
+                "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
+                nameof(FunctionLoggingTests), nameof(LogExcInFctCall_CustomLevel_Explicit),
+                string.Empty),
+            Times.Once);
+    }
+
+    /// <summary>
+    ///     LogExcInFctCall (explicit types) logs null class/method names as null.
+    /// </summary>
+    [Fact]
+    public void LogExcInFctCall_NullClassAndMethod_LogsNulls()
+    {
+        var exc = new Exception("Test");
+
+        _logger.Object.LogExcInFctCall(exc, null, null);
+
+        _logger.Verify(x => x.Write(LogEventLevel.Error,
+                It.Is<Exception>(e => e == exc),
+                "Exception thrown in: {ClassName} -> {FctName}{CustomMsg}",
+                (string?)null, (string?)null, string.Empty),
             Times.Once);
     }
 
